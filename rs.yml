@@ -1,0 +1,19 @@
+kind: ReplicaSet
+apiVersion: apps/v1
+metadata:
+  name: myreplicaset
+spec:
+  replicas: 2
+  selector:
+    matchExpressions:
+      - {key: myname, operator: In, values: [Sai, Saii, Saiii]}
+  template:
+    metadata:
+      labels:
+        myname: Sai
+    spec:
+      containers:
+        - name: c00
+          image: ubuntu
+          command: ["/bin/bash", "-c", "while true; do echo Hello-Sai; sleep 5; done"]
+
